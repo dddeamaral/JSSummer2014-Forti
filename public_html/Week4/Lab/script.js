@@ -32,7 +32,7 @@ var data = {
                "innerHeight" : [],
                "innerWidth" : [],
                "userAgent" : [],
-               "title" : [],
+               "title" : []
             };
             function datagather(){
                 data.innerHeight.push(window.innerHeight);
