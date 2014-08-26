@@ -28,26 +28,35 @@ function submitform() {
         var err_fname = document.getElementById('err_fname');
         var err_lname = document.getElementById('err_lname');
         var err_email = document.getElementById('err_email');
-        var fname = document.getElementById('firstname');
-        var lname = document.getElementById('lastname');
+        var fname = document.getElementById('fname');
+        var lname = document.getElementById('lname');
         var hasErrors = false;
         var emailRegex = /^[a-zA-Z]+[@]{1}[a-zA-Z]+[\.]{1}[a-zA-Z]{2,3}$/;		
         var fname = document.getElementById('fname');
         var mainform = document.getElementById('mainform');
-    if ( !fname.value.length ) {
+   
+    
+    
+    
+    
+                if ( !fname.value.length ) 
+                {
             console.log("Fname needs a length");
-    } else if ( SpaceAlphaValidate( fname.value ) === false ) {
+                    } 
+            else if ( SpaceAlphaValidate( fname.value ) === false ) 
+            {
             console.log("Fname needs Alpha chars");
-    } else {
+            }
+           else {
             console.log("Fname is good");
-    }
+                   }
         
          
         
 
 
 
-var email = document.getElementById('email');
+                    var email = document.getElementById('email');
                     
             
                     if ( emailRegex.test(email.value) ){
@@ -55,12 +64,12 @@ var email = document.getElementById('email');
                     } else {
                        err_email.innerHTML = '<p>Email is not valid.</p>';
                     }
-                    document.getElementById('submit').addEventListener('click', submitform);
+                          document.getElementById('submit').addEventListener('click', submitform);
                   
                 //var commentstuff = "^[<>]";
-                var comment = document.getElementById('comments');
+                      var comment = document.getElementById('comments');
               
-    comment.value = strip_HTML(comment.value);
+                     comment.value = strip_HTML(comment.value);
                 
                     if ( comments.value.length < 1 || comments.value.length > 150 ) {
             hasErrors = true;
@@ -74,7 +83,7 @@ var email = document.getElementById('email');
         }
                     var email = document.getElementById('email');
                     var results = document.getElementById('results');
-                    results.innerHTML = "here are your results first name: " + fname.value + " Last Name:" + lname.value + "email:" + email.value;
+                    results.innerHTML = "here are your results first name: " + fname.value + ", Last Name:" + lname.value + ", email: " + email.value;
                   
     
     if(!hasErrors){
