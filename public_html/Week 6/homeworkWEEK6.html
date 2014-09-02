@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Week 6 Lab </title>
+        <style type="text/css">
+            .contentBox {
+                width: 300px;
+                margin: 1em;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        </style>
+    </head>
+    <body>
+
+	<div id="content" class="contentBox"></div>
+
+	<input type="button" id="showResults" value="Show Results" />
+
+	<script type="text/javascript">
+
+		 //http://canvas.site40.net/demopage.html	
+		// XML HTTP Request
+		var xhr = new XMLHttpRequest();					// Declares var for ajax to be called when using the xhr var
+		var content = document.getElementById('content');  		
+		var showResults = document.getElementById('showResults');  	
+		var url = "demo.php?page=";					
+                var step = 1;
+		
+                showResults.addEventListener('click',makeAJAXCall);		// uses the makeAJAXCall function when clicked, via event listener
+		
+		function callback() {
+			var response = xhr.responseText;  
+						
+			content.innerHTML += response;
+                        step++;
+                        
+
+		}
+		
+		
+		xhr.onreadystatechange = function() { 
+									
+		   if (xhr.readyState==4 && xhr.status==200) {  // an if statement that returns the document status
+			callback();  
+		   } 
+		};  
+		
+		
+                function makeAJAXCall(){		//if statement inside the function that as long as the step is less than 5 it will open and send more steps/text blocks
+                    if ( step < 5 ) {                      
+                        xhr.open('GET', url+step, true);  //opens and appends the text called step and loads it and sends it to screen
+                        xhr.send();   
+                    }
+                }
+		
+		
+                
+		window.addEventListener('load', makeAJAXCall); //whenever the page loads, it will use the makeAJAXCall function 
+
+
+                function scrollCheck() {
+			if ( (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {				
+				makeAJAXCall();		 // function that makes the ajax call when the innerheight and scroll are equal to or greater than the page of the offsetheight
+			}
+		}
+		
+		window.addEventListener("scroll", scrollCheck); // an event listener that will check how far the scroll is down the page.
+		
+		
+		
+		 
+
+		
+		
+	</script>
+    </body>
+</html>
