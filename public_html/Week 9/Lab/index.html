@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lab 9</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <style type="text/css">
+            canvas {
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        
+        <canvas id="race" width="750" height="150"></canvas>
+        <br />
+        <button id="play">Play</button>
+        
+        <script type="text/javascript">
+            /*
+                We will be creating a canvas race game. We will have two teams, one red and the other blue, that will race to the finish line.
+
+                Using Canvas create two rectangles, one red and the other blue. They should be the same width and height. 
+                When moving the rectangles make sure to generate a random number to move the x position of each rectangle. 
+                The minimum should always be greater than zero. It should be called twice to get a unique number for each rectangle. 
+                Once the rectangle reaches the finish line, display the winner. A play button should appear to reset the race. 
+                Once the race is started the play button should be hidden again.
+             */
+            var playButton = document.getElementById('play');
+            var can = document.getElementById('race');
+            var ctx = can.getContext('2d');
+            
+              function moveRect(){
+              
+        if (x < can.width-100){
+              
+                x += randNum;
+                ctx.fillRect(x, y-h, 50, h); // x, y, width, height
+                setTimeout(moveRect, randNum);
+                }else {moveRect();}
+        }
+           function randNum(max) {
+               return Math.ceil(Math.random()*max) + 1;
+           }
+        </script>
+    </body>
+</html>
