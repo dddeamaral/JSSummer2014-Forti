@@ -14,7 +14,7 @@
         
         <canvas id="race" width="750" height="150"></canvas>
         <br />
-        <button id="play">Play</button>
+        <button id="play" onclick = "playgame();">Play</button>
         
         <script type="text/javascript">
             /*
@@ -30,15 +30,44 @@
             var can = document.getElementById('race');
             var ctx = can.getContext('2d');
             
-              function moveRect(){
-              
-        if (x < can.width-100){
-              
-                x += randNum;
-                ctx.fillRect(x, y-h, 50, h); // x, y, width, height
-                setTimeout(moveRect, randNum);
-                }else {moveRect();}
-        }
+            
+             function drawClear(){
+                ctx.clearRect(0,0,can.width,can.height);
+                ctx.fillStyle = "Red";
+            }
+            var a= 0,
+                b=0;
+            
+            function playgame(){
+                if (a<= 700 && b<=700){
+                     ctx.clearRect(0,0,can.width,can.height);
+                     ctx.fillStyle = "Red";         
+                     ctx.fillRect(a, 15, 50, 20);
+                     ctx.fillStyle = "Blue";         
+                     ctx.fillRect(b, 80, 50, 20);
+                     
+                     a+=randNum(20);
+                     b+=randNum(20);
+                     setTimeout(playgame, 50);
+                }else{
+                    futurewinner();}
+                        clearTimeout(playgame);
+                    
+                }
+                
+            function futurewinner(){
+                if(a>700){
+                    ctx.fillStyle = "red";
+            ctx.font = "16pt Helvetica";//x, y, width, height
+            ctx.fillText("Red is the winner",150,can.height-10);
+                }else if(b >700){
+                    ctx.fillStyle = "blue";
+            ctx.font = "16pt Helvetica";//x, y, width, height
+            ctx.fillText("Blue is the winner",150,can.height-10);
+                }
+                
+            }
+            
            function randNum(max) {
                return Math.ceil(Math.random()*max) + 1;
            }

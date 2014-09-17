@@ -22,6 +22,7 @@
 
             function drawClear(){
                 ctx.clearRect(0,0,can.width,can.height);
+                ctx.fillStyle = "Red";
             }
 
             var h = 20,
@@ -43,12 +44,12 @@
             }
             growRect();
             
-            function moveRect(){
+           function moveRect(){
               
         if (x < can.width-100){
                 drawClear();
                 x += 20;
-                ctx.fillRect(x, y-h, 50, h); // x, y, width, height
+                ctx.fillR ect(x, y-h, 50, h); // x, y, width, height
                 setTimeout(moveRect, 100);
                 }
         }
