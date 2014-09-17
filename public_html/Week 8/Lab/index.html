@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--
+1. Create a new Lab8.html file under your week 8 folder.  
+    Create a Div and 3 buttons on the page.
+    Button 1: Fade in
+    Button 2: Fade out
+    Button 3: Move Div
+    Make sure to give the buttons ID's so you can add an event handler to them.
+
+2. Create an alert message using the alert function
+(alert is a built in JavaScript global function) 
+that will display after the page has been open for 5 seconds.
+use:  alert('hi');
+
+3. Use a timer to run a function that will fade out a div.
+hint: Elem.style.opacity
+    opacity can only take a number between 0 and 1
+    To make it simple it should fade in only 10 steps.
+    10 / 100
+
+4. Create another function that will fade in the same div.
+Hint: you should cancel the previous timer before starting this one
+    
+5.  Create a function that will move the div across the screen.
+hint:  Set the div to be "position: absolute;" in CSS.  
+    in JavaScript you can update the elem.style.left property
+    to increase the position by 10 pixels each time it's run.
+    e.g.
+    var divPosLeft = 0;
+    
+    divPosLeft = divPosLeft + 10;
+    elem.style.left = divPosLeft+"px";
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style type="text/css">
+            #test{ 
+                position: absolute;
+                   } 
+
+        </style>
+    </head>
+    <body>
+        <div id="test">Moving this text</div>
+        <br/>
+        <button id="fadein">Fade In</button>
+        <button id="fadeout">Fade Out</button>
+        <button id="movediv">Move Div</button>
+
+        <script type="text/javascript">
+            
+
+            function fiveSeconds () 
+            {
+            alert('ayy, ' + '\n\n' + 'This page is gonna start doing some crazy stuff, now that you have waited 5 seconds.');
+            console.log("Heeey the timer worked");
+            }
+            var timerClock =  setTimeout(fiveSeconds, 5000);
+
+            var test = document.getElementById('test');        
+            var fade = 0;
+            var btnIn = document.getElementById('fadein'); 
+            btnIn.addEventListener('click', startFadeIn);
+            function startFadeIn()
+            { 
+                fade = 0;
+                this.elem = document.getElementById('test');
+                setTimeout(fadeIn, 100);
+            }
+            function fadeIn() 
+            {
+                fade = fade + 10;
+                test.style.opacity = fade/100;
+                if (fade < 100)
+                {
+                    setTimeout(fadeIn, 200);
+                }    
+            }
+            var fadeOutbutton = document.getElementById('fadeout');  
+            fadeOutbutton.addEventListener('click', fadingOut);        
+            function fadingOut()
+            {
+                fade = 100;  
+                this.elem = document.getElementById('test');
+                setTimeout(fadeOut, 100);
+             }
+            function fadeOut() {        //fading out function.
+             fade = fade - 10;
+             test.style.opacity = fade/100;
+             if (fade > 0)
+             {
+               setTimeout(fadeOut, 200);
+             }
+            }
+            var btnmove = document.getElementById('movediv');  
+            btnmove.addEventListener('click',moveDiv);
+            var divPosLeft = 40;
+            function moveDiv()
+            {
+                divPosLeft = divPosLeft + 100;
+                test.style.left =divPosLeft+"px";
+                if (divPosLeft < 1000)
+                {
+                    divPosLeft += 20;
+                    setTimeout(moveDiv, 100);
+                }else
+                {
+                    clearTimeout(moveDiv);
+                }
+                   
+            }
+            
+            
+        </script>
+              
+        
+        
+    </body>
+</html>
